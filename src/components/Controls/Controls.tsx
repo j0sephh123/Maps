@@ -3,11 +3,10 @@ import classes from "./Controls.module.css";
 
 type Props = {
   resetHandler: () => void;
-  children: ReactNode,
+  children: ReactNode;
 };
 
 const Controls = ({ resetHandler, children }: Props) => {
-
   return (
     <div className={classes.controls}>
       <h3>{children}</h3>

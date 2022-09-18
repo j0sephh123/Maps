@@ -1,15 +1,13 @@
 import clsx from "clsx";
-import classes from "./State.module.css";
+import classes from "./UsaState.module.css";
 
-const State = ({
-  onClick,
-  d,
-  isActive,
-}: {
+type Props = {
   onClick: any;
   d: string;
   isActive: boolean;
-}) => {
+};
+
+const UsaState = ({ onClick, d, isActive }: Props) => {
   return (
     <path
       className={clsx(isActive && classes.isActive)}
@@ -19,4 +17,4 @@ const State = ({
   );
 };
 
-export default State;
+export default UsaState;
