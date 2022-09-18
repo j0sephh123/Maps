@@ -1,13 +1,13 @@
 import { stateTitles } from "../data/stateTitles";
 
-const excludeStringFromArray = (string: string, array: string[]) =>
+export const excludeStringFromArray = (string: string, array: string[]) =>
   !array.includes(string);
 
-const getRandomFromArray = (array: any[]) =>
+export const getRandomIndexFromArray = (array: any[]) =>
   Math.floor(Math.random() * array.length);
 
 export const getRandomState = (excludeList?: string[]) => {
-  const randomStateIndex = getRandomFromArray(stateTitles);
+  const randomStateIndex = getRandomIndexFromArray(stateTitles);
 
   if (excludeList) {
     return stateTitles.filter((stateTitle) =>

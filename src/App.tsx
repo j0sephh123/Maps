@@ -18,13 +18,13 @@ function App() {
 
       <Map>
         {stateTitles.map((title, index) => {
-          const isGuessed =
-            title === askedState && !activeStates.includes(title);
+          const isUsaStatedGuessed = activeStates.includes(title);
+          const isGuessed = title === askedState && !isUsaStatedGuessed;
 
           return (
             <UsaState
               key={title}
-              isActive={activeStates.includes(title)}
+              isActive={isUsaStatedGuessed}
               onClick={() => isGuessed && handleClick(title)}
               d={svgPaths[index]}
             />

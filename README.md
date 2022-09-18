@@ -11,6 +11,7 @@ Playing around with svg maps.
 ## Used technologies
 
 - [Vite](https://vitejs.dev/)
+- [Vitest](https://vitest.dev/) - going to use it for the first time in this project, so currently nothing to say.
 
 ## Contribution
 
