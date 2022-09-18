@@ -1,0 +1,11 @@
+path {
+  fill: #1b1c24;
+  fill-opacity: 1;
+  stroke: white;
+  stroke-opacity: 1;
+  stroke-width: 0.5;
+}
+
+path:hover {
+  fill: #363848;
+}
