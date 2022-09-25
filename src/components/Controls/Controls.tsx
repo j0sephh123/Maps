@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { ReactNode } from "react";
 import { useColorTheme } from "../../ColorThemeContextProvider";
 import classes from "./Controls.module.css";
@@ -11,7 +12,7 @@ const Controls = ({ resetHandler, children }: Props) => {
   const { colorTheme } = useColorTheme();
 
   return (
-    <div className={`${classes.controls} ${classes[colorTheme]}`}>
+    <div className={clsx(classes.controls, classes[colorTheme])}>
       <h3>{children}</h3>
       <button onClick={resetHandler}>Reset</button>
     </div>
