@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useColorTheme } from "../../ColorThemeContextProvider";
 import classes from "./Controls.module.css";
 
 type Props = {
@@ -7,8 +8,10 @@ type Props = {
 };
 
 const Controls = ({ resetHandler, children }: Props) => {
+  const { colorTheme } = useColorTheme();
+
   return (
-    <div className={classes.controls}>
+    <div className={`${classes.controls} ${classes[colorTheme]}`}>
       <h3>{children}</h3>
       <button onClick={resetHandler}>Reset</button>
     </div>

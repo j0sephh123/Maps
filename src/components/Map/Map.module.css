@@ -1,4 +1,4 @@
-path {
+.dark path {
   fill: #1b1c24;
   fill-opacity: 1;
   stroke: white;
@@ -6,6 +6,18 @@ path {
   stroke-width: 0.5;
 }
 
-path:hover {
+.dark path:hover {
   fill: #363848;
+}
+
+.light path {
+  fill: #1e8346;
+  fill-opacity: 1;
+  stroke: #95bec8;
+  stroke-opacity: 1;
+  stroke-width: 0.5;
+}
+
+.light path:hover {
+  fill: #66ab82;
 }

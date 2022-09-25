@@ -2,3 +2,11 @@
   display: flex;
   align-items: center;
 }
+
+.controls.light h3 {
+  color: #242424;
+}
+
+.controls.dark h3 {
+  color: #fff;
+}

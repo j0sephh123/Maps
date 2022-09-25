@@ -1,0 +1,12 @@
+.icon {
+  cursor: pointer;
+}
+
+svg.dark {
+  fill: #fff;
+  stroke: #fff;
+}
+
+svg.dark circle {
+  stroke: #242424;
+}
