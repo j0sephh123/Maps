@@ -29,7 +29,7 @@ const ContextProvider = ({ children }: any) => {
         setColorTheme,
       }}
     >
-      {children}
+      <div className={`${colorTheme} container`}>{children}</div>
     </ColorThemeContext.Provider>
   );
 };
