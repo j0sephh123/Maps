@@ -1,5 +1,7 @@
 .icon {
   cursor: pointer;
+  position: absolute;
+  right: 0;
 }
 
 svg.dark {

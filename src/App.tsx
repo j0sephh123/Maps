@@ -16,7 +16,6 @@ function App() {
 
   const { colorTheme, setColorTheme } = useColorTheme();
 
-  // TODO refactor how icons are handled
   return (
     <div className={`${colorTheme} container`}>
       {colorTheme === "dark" && (
