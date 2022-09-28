@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useEffect } from "react";
 import { Map, UsaState } from "./components";
 import svgPaths from "./data/svgPaths";
 import { stateTitles } from "./data/stateTitles";
@@ -14,9 +15,14 @@ function App() {
     handleClick,
     reset,
     debugAnswerAll,
+    loadInitialStatesFromLS,
   } = useAppReducer();
 
   const { colorTheme } = useColorTheme();
+
+  useEffect(() => {
+    loadInitialStatesFromLS();
+  }, [loadInitialStatesFromLS]);
 
   return (
     <>

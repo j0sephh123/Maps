@@ -3,7 +3,7 @@ import { AppInitialState, APP_INITIAL_STATE_KEYS } from "../../types";
 const defaultActiveStatesResult = "[]";
 
 export class LocalStorageApi {
-  private static readActiveState() {
+  public static readActiveStates() {
     const getItemResult =
       localStorage.getItem(APP_INITIAL_STATE_KEYS.activeStates) ??
       defaultActiveStatesResult;

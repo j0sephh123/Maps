@@ -7,13 +7,13 @@ export const getRandomIndexFromArray = (array: any[]) =>
   Math.floor(Math.random() * array.length);
 
 export const getRandomState = (excludeList?: string[]) => {
-  const randomStateIndex = getRandomIndexFromArray(stateTitles);
-
   if (excludeList) {
-    return stateTitles.filter((stateTitle) =>
+    const filtered = stateTitles.filter((stateTitle) =>
       excludeStringFromArray(stateTitle, excludeList)
-    )[randomStateIndex];
+    );
+
+    return filtered[getRandomIndexFromArray(filtered)];
   }
 
-  return stateTitles[randomStateIndex];
+  return stateTitles[getRandomIndexFromArray(stateTitles)];
 };

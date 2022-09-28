@@ -5,10 +5,6 @@ import appReducer from "../app/appReducer";
 export default function useAppReducer() {
   const [appState, dispatch] = useReducer(appReducer, appInitialState);
 
-  console.log({
-    appState,
-  });
-
   const handleClick = (title: string) =>
     dispatch({
       type: "HANDLE_CLICK",
@@ -24,10 +20,15 @@ export default function useAppReducer() {
     dispatch({ type: "DEBUG_ANSWER_ALL" });
   };
 
+  const loadInitialStatesFromLS = () => {
+    dispatch({ type: "LOAD_INITIAL_STATES_FROM_LS" });
+  };
+
   return {
     appState,
     handleClick,
     reset,
     debugAnswerAll,
+    loadInitialStatesFromLS,
   };
 }

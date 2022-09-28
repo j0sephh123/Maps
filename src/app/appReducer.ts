@@ -37,5 +37,20 @@ export default function appReducer(
     };
   }
 
+  if (action.type === "LOAD_INITIAL_STATES_FROM_LS") {
+    // if(state.activeStates.length)
+    if (state.activeStates.length === 0) {
+      const activeStatesFromLS = LocalStorageApi.readActiveStates();
+      if (activeStatesFromLS.length > 0) {
+        return {
+          ...state,
+          activeStates: activeStatesFromLS,
+          score: activeStatesFromLS.length,
+          askedState: getRandomState(activeStatesFromLS),
+        };
+      }
+    }
+  }
+
   return state;
 }

@@ -13,4 +13,5 @@ export type AppInitialState = {
 export type Action =
   | { type: "HANDLE_CLICK"; title: string }
   | { type: "RESET" }
-  | { type: "DEBUG_ANSWER_ALL" };
+  | { type: "DEBUG_ANSWER_ALL" }
+  | { type: "LOAD_INITIAL_STATES_FROM_LS" };
