@@ -1,5 +1,6 @@
 import { useReducer } from "react";
-import appReducer, { appInitialState } from "../store/appReducer";
+import appInitialState from "../app/appInitialState";
+import appReducer from "../app/appReducer";
 
 export default function useAppReducer() {
   const [appState, dispatch] = useReducer(appReducer, appInitialState);
