@@ -1,4 +1,4 @@
-import { stateTitles } from "../data/stateTitles";
+import { stateTitles } from "../../data/stateTitles";
 
 export const excludeStringFromArray = (string: string, array: string[]) =>
   !array.includes(string);

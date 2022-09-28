@@ -1,5 +1,5 @@
 import { stateTitles } from "../data/stateTitles";
-import { getRandomState } from "../utils/generators";
+import { getRandomState } from "../utils/generators/generators";
 
 export type AppInitialState = {
   askedState: string | null;
