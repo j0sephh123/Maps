@@ -13,14 +13,14 @@ type Context = {
 };
 
 const ColorThemeContext = createContext<Context>({
-  colorTheme: "light",
+  colorTheme: "dark",
   setColorTheme: () => {},
 });
 
 export const useColorTheme = () => useContext(ColorThemeContext);
 
 const ContextProvider = ({ children }: any) => {
-  const [colorTheme, setColorTheme] = useState<ColorThemes>("light");
+  const [colorTheme, setColorTheme] = useState<ColorThemes>("dark");
 
   return (
     <ColorThemeContext.Provider

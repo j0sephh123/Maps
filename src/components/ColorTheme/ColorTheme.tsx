@@ -1,4 +1,4 @@
-import { useColorTheme } from "../../ColorThemeContextProvider";
+import { useColorTheme } from "../../providers/ColorThemeContextProvider";
 import Moon from "../icons/Moon";
 import Sun from "../icons/Sun";
 

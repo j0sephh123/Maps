@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useColorTheme } from "../../ColorThemeContextProvider";
+import { useColorTheme } from "../../providers/ColorThemeContextProvider";
 import classes from "./Map.module.css";
 
 type Props = {

@@ -1,7 +1,8 @@
+import { stateTitles } from "../data/stateTitles";
 import { getRandomState } from "../utils/generators";
 
 export type AppInitialState = {
-  askedState: string;
+  askedState: string | null;
   score: number;
   activeStates: string[];
 };
@@ -16,9 +17,15 @@ export type ResetPayload = {
   title: string;
 };
 
-type Action = { type: "HANDLE_CLICK"; title: string } | { type: "RESET" };
+type Action =
+  | { type: "HANDLE_CLICK"; title: string }
+  | { type: "RESET" }
+  | { type: "DEBUG_ANSWER_ALL" };
 
-export default function appReducer(state: AppInitialState, action: Action) {
+export default function appReducer(
+  state: AppInitialState,
+  action: Action
+): AppInitialState {
   if (action.type === "HANDLE_CLICK") {
     return {
       ...state,
@@ -30,6 +37,15 @@ export default function appReducer(state: AppInitialState, action: Action) {
 
   if (action.type === "RESET") {
     return { ...appInitialState, askedState: getRandomState() };
+  }
+
+  if (action.type === "DEBUG_ANSWER_ALL") {
+    return {
+      ...state,
+      activeStates: stateTitles,
+      askedState: null,
+      score: stateTitles.length,
+    };
   }
 
   return state;

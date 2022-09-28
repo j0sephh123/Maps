@@ -1,24 +1,32 @@
-import { Map, UsaState, Controls } from "./components";
+import clsx from "clsx";
+import { Map, UsaState } from "./components";
 import svgPaths from "./data/svgPaths";
 import { stateTitles } from "./data/stateTitles";
 import useAppReducer from "./hooks/useAppReducer";
 import "./index.css";
+import classes from "./App.module.css";
 import ColorTheme from "./components/ColorTheme/ColorTheme";
+import { useColorTheme } from "./providers/ColorThemeContextProvider";
 
 function App() {
   const {
     appState: { activeStates, askedState, score },
     handleClick,
     reset,
+    debugAnswerAll,
   } = useAppReducer();
+
+  const { colorTheme } = useColorTheme();
 
   return (
     <>
       <ColorTheme />
-      <Controls
-        resetHandler={reset}
-      >{`${score}/${stateTitles.length} ${askedState}`}</Controls>
-
+      <div className={clsx(classes.controls, classes[colorTheme])}>
+        <h2>{`${score}/${stateTitles.length}`}</h2>
+        <button onClick={debugAnswerAll}>Answer All</button>
+        <button onClick={reset}>Reset</button>
+        <h3>{askedState}</h3>
+      </div>
       <Map>
         {stateTitles.map((title, index) => {
           const isUsaStatedGuessed = activeStates.includes(title);
