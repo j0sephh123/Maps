@@ -1,12 +1,8 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 import { useColorTheme } from "../../providers/ColorThemeContextProvider";
 import classes from "./Map.module.css";
 
-type Props = {
-	children: ReactNode;
-};
-
-const Map = ({ children }: Props) => {
+const Map = ({ children }: PropsWithChildren) => {
 	const { colorTheme } = useColorTheme();
 
 	return (

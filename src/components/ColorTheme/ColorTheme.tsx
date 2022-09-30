@@ -1,10 +1,11 @@
 import clsx from "clsx";
+import { PropsWithChildren } from "react";
 import { useColorTheme } from "../../providers/ColorThemeContextProvider";
 import Moon from "../icons/Moon";
 import Sun from "../icons/Sun";
 import classes from "./ColorTheme.module.css";
 
-export default function ColorTheme({ children }: any) {
+export default function ColorTheme({ children }: PropsWithChildren) {
 	const { colorTheme, setColorTheme } = useColorTheme();
 
 	return (

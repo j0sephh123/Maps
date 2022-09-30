@@ -2,7 +2,7 @@ import clsx from "clsx";
 import classes from "./UsaState.module.css";
 
 type Props = {
-	onClick: any;
+	onClick: () => void;
 	d: string;
 	isActive: boolean;
 	isSuggested: boolean;
