@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import appInitialState from "../app/appInitialState";
 import appReducer from "../app/appReducer";
+import { Suggestion } from "../types";
 
 export default function useAppReducer() {
   const [appState, dispatch] = useReducer(appReducer, appInitialState);
@@ -24,11 +25,16 @@ export default function useAppReducer() {
     dispatch({ type: "LOAD_INITIAL_STATES_FROM_LS" });
   };
 
+  const showSuggestion = () => {
+    dispatch({ type: "SHOW_SUGGESTION" });
+  };
+
   return {
     appState,
     handleClick,
     reset,
     debugAnswerAll,
     loadInitialStatesFromLS,
+    showSuggestion,
   };
 }

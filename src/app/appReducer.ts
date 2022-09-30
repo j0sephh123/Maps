@@ -9,6 +9,20 @@ export default function appReducer(
   action: Action
 ): AppInitialState {
   if (action.type === "HANDLE_CLICK") {
+    const isGuessCorrect =
+      action.title === state.askedState &&
+      !state.activeStates.includes(action.title);
+
+    if (!isGuessCorrect) {
+      return {
+        ...state,
+        suggestion: {
+          ...state.suggestion,
+          currentWrongAttempts: state.suggestion.currentWrongAttempts + 1,
+        },
+      };
+    }
+
     const newActiveStates = [...state.activeStates, action.title];
 
     LocalStorageApi.saveActiveStates(newActiveStates);
@@ -18,12 +32,17 @@ export default function appReducer(
       score: state.score + 1,
       activeStates: newActiveStates,
       askedState: getRandomState(newActiveStates),
+      suggestion: appInitialState.suggestion,
     };
   }
 
   if (action.type === "RESET") {
     LocalStorageApi.resetActiveStates();
-    return { ...appInitialState, askedState: getRandomState() };
+    return {
+      ...appInitialState,
+      askedState: getRandomState(),
+      suggestion: appInitialState.suggestion,
+    };
   }
 
   if (action.type === "DEBUG_ANSWER_ALL") {
@@ -34,6 +53,7 @@ export default function appReducer(
       activeStates: stateTitles,
       askedState: null,
       score: stateTitles.length,
+      suggestion: appInitialState.suggestion,
     };
   }
 
@@ -50,6 +70,21 @@ export default function appReducer(
         };
       }
     }
+  }
+
+  if (action.type === "SHOW_SUGGESTION") {
+    if (!state.askedState) {
+      return state;
+    }
+
+    return {
+      ...state,
+      suggestion: {
+        ...state.suggestion,
+        currentWrongAttempts: 0,
+        suggestedStates: [state.askedState],
+      },
+    };
   }
 
   return state;

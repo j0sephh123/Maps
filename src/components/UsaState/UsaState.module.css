@@ -2,3 +2,8 @@ path.isActive,
 path.isActive:hover {
   fill: #4a5c4a;
 }
+
+path.isSuggested {
+  stroke: #a74ea7;
+  stroke-width: 3;
+}

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Map, UsaState } from "./components";
 import svgPaths from "./data/svgPaths";
 import { stateTitles } from "./data/stateTitles";
@@ -11,18 +11,32 @@ import { useColorTheme } from "./providers/ColorThemeContextProvider";
 
 function App() {
   const {
-    appState: { activeStates, askedState, score },
+    appState: {
+      activeStates,
+      askedState,
+      score,
+      suggestion: { currentWrongAttempts, suggestedStates },
+    },
     handleClick,
     reset,
     debugAnswerAll,
     loadInitialStatesFromLS,
+    showSuggestion,
   } = useAppReducer();
 
   const { colorTheme } = useColorTheme();
 
+  const loadInitialStates = useCallback(() => loadInitialStatesFromLS(), []);
+
   useEffect(() => {
-    loadInitialStatesFromLS();
-  }, [loadInitialStatesFromLS]);
+    loadInitialStates();
+  }, [loadInitialStates]);
+
+  useEffect(() => {
+    if (currentWrongAttempts === 3) {
+      showSuggestion();
+    }
+  }, [currentWrongAttempts]);
 
   return (
     <>
@@ -32,21 +46,22 @@ function App() {
         <button onClick={debugAnswerAll}>Answer All</button>
         <button onClick={reset}>Reset</button>
         <h3>{askedState}</h3>
+        <button
+          onClick={showSuggestion}
+        >
+          Suggest
+        </button>
       </div>
       <Map>
-        {stateTitles.map((title, index) => {
-          const isUsaStatedGuessed = activeStates.includes(title);
-          const isGuessed = title === askedState && !isUsaStatedGuessed;
-
-          return (
-            <UsaState
-              key={title}
-              isActive={isUsaStatedGuessed}
-              onClick={() => isGuessed && handleClick(title)}
-              d={svgPaths[index]}
-            />
-          );
-        })}
+        {stateTitles.map((title, index) => (
+          <UsaState
+            isSuggested={suggestedStates.includes(title)}
+            key={title}
+            isActive={activeStates.includes(title)}
+            onClick={() => handleClick(title)}
+            d={svgPaths[index]}
+          />
+        ))}
       </Map>
     </>
   );
