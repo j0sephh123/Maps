@@ -6,8 +6,6 @@ export const appInitialState: AppInitialState = {
   score: 0,
   askedState: getRandomState(),
   suggestion: {
-    // numberOfStates: 1,
-    // wrongAttemptsThreshold: 3,
     currentWrongAttempts: 0,
     suggestedStates: [],
   },

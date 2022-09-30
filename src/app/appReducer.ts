@@ -10,8 +10,8 @@ export default function appReducer(
 ): AppInitialState {
   if (action.type === "HANDLE_CLICK") {
     const isGuessCorrect =
-      action.title === state.askedState &&
-      !state.activeStates.includes(action.title);
+      action.payload.title === state.askedState &&
+      !state.activeStates.includes(action.payload.title);
 
     if (!isGuessCorrect) {
       return {
@@ -23,7 +23,7 @@ export default function appReducer(
       };
     }
 
-    const newActiveStates = [...state.activeStates, action.title];
+    const newActiveStates = [...state.activeStates, action.payload.title];
 
     LocalStorageApi.saveActiveStates(newActiveStates);
 

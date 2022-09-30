@@ -1,32 +1,29 @@
-import clsx from "clsx";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { Map, UsaState } from "./components";
 import svgPaths from "./data/svgPaths";
 import { stateTitles } from "./data/stateTitles";
-import useAppReducer from "./hooks/useAppReducer";
 import "./index.css";
-import classes from "./App.module.css";
 import ColorTheme from "./components/ColorTheme/ColorTheme";
-import { useColorTheme } from "./providers/ColorThemeContextProvider";
+import appInitialState from "./app/appInitialState";
+import appReducer from "./app/appReducer";
 
 function App() {
-  const {
-    appState: {
+  const [
+    {
       activeStates,
       askedState,
       score,
       suggestion: { currentWrongAttempts, suggestedStates },
     },
-    handleClick,
-    reset,
-    debugAnswerAll,
-    loadInitialStatesFromLS,
-    showSuggestion,
-  } = useAppReducer();
+    dispatch,
+  ] = useReducer(appReducer, appInitialState);
 
-  const { colorTheme } = useColorTheme();
+  const showSuggestion = () => dispatch({ type: "SHOW_SUGGESTION" });
 
-  const loadInitialStates = useCallback(() => loadInitialStatesFromLS(), []);
+  const loadInitialStates = useCallback(
+    () => dispatch({ type: "LOAD_INITIAL_STATES_FROM_LS" }),
+    []
+  );
 
   useEffect(() => {
     loadInitialStates();
@@ -40,25 +37,25 @@ function App() {
 
   return (
     <>
-      <ColorTheme />
-      <div className={clsx(classes.controls, classes[colorTheme])}>
+      <ColorTheme>
         <h2>{`${score}/${stateTitles.length}`}</h2>
-        <button onClick={debugAnswerAll}>Answer All</button>
-        <button onClick={reset}>Reset</button>
-        <h3>{askedState}</h3>
-        <button
-          onClick={showSuggestion}
-        >
-          Suggest
+        <button onClick={() => dispatch({ type: "DEBUG_ANSWER_ALL" })}>
+          Answer All
         </button>
-      </div>
+        <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+        <h3>{askedState}</h3>
+        <button onClick={showSuggestion}>Suggest</button>
+      </ColorTheme>
+
       <Map>
         {stateTitles.map((title, index) => (
           <UsaState
             isSuggested={suggestedStates.includes(title)}
             key={title}
             isActive={activeStates.includes(title)}
-            onClick={() => handleClick(title)}
+            onClick={() =>
+              dispatch({ type: "HANDLE_CLICK", payload: { title } })
+            }
             d={svgPaths[index]}
           />
         ))}

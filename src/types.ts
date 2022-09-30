@@ -1,6 +1,4 @@
 export type Suggestion = {
-  // wrongAttemptsThreshold: number;
-  // numberOfStates: number;
   currentWrongAttempts: number;
   suggestedStates: string[];
 };
@@ -20,7 +18,7 @@ export enum APP_INITIAL_STATE_KEYS {
 }
 
 export type Action =
-  | { type: "HANDLE_CLICK"; title: string }
+  | { type: "HANDLE_CLICK"; payload: { title: string } }
   | { type: "RESET" }
   | { type: "DEBUG_ANSWER_ALL" }
   | { type: "LOAD_INITIAL_STATES_FROM_LS" }
