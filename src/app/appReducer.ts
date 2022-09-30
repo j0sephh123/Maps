@@ -77,12 +77,26 @@ export default function appReducer(
 			return state;
 		}
 
+		const remainingWithoutAskedState = state.activeStates.filter(
+			(activeState) => activeState !== state.askedState
+		);
+
+		// TODO create a function to generate more than one random state
+		const firstRandomState = getRandomState(remainingWithoutAskedState);
+		const secondRandomState = getRandomState(
+			remainingWithoutAskedState.filter((item) => item !== firstRandomState)
+		);
+
 		return {
 			...state,
 			suggestion: {
 				...state.suggestion,
 				currentWrongAttempts: 0,
-				suggestedStates: [state.askedState],
+				suggestedStates: [
+					state.askedState,
+					firstRandomState,
+					secondRandomState,
+				],
 			},
 		};
 	}
