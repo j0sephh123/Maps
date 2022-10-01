@@ -32,8 +32,8 @@ describe("utils > generators > getRandomIndexFromArray", () => {
 	});
 });
 
-describe("utils > generators > getRandomState", () => {
-	it("dunno yet", () => {
-		expect(getRandomState()).toEqual(1);
-	});
-});
+// describe("utils > generators > getRandomState", () => {
+// 	it("dunno yet", () => {
+// 		expect(getRandomState()).toEqual(1);
+// 	});
+// });

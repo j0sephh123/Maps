@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useReducer } from "react";
-import { Map, UsaState } from "./components";
+import { Map, UsaState , Header} from "./components";
 import svgPaths from "./data/svgPaths";
 import { stateTitles } from "./data/stateTitles";
 import "./index.css";
-import ColorTheme from "./components/ColorTheme/ColorTheme";
 import appInitialState from "./app/appInitialState";
 import appReducer from "./app/appReducer";
 
@@ -37,7 +36,7 @@ function App() {
 
 	return (
 		<>
-			<ColorTheme>
+			<Header>
 				<h2>{`${score}/${stateTitles.length}`}</h2>
 				<button onClick={() => dispatch({ type: "DEBUG_ANSWER_ALL" })}>
 					Answer All
@@ -45,7 +44,7 @@ function App() {
 				<button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
 				<h3>{askedState}</h3>
 				<button onClick={showSuggestion}>Suggest</button>
-			</ColorTheme>
+			</Header>
 
 			<Map>
 				{stateTitles.map((title, index) => (
