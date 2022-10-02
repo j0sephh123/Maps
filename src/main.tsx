@@ -6,9 +6,9 @@ import ColorThemeContextProvider from "./providers/ColorThemeContextProvider";
 const root = document.getElementById("root") as HTMLElement;
 
 createRoot(root).render(
-  <StrictMode>
-    <ColorThemeContextProvider>
-      <App />
-    </ColorThemeContextProvider>
-  </StrictMode>
+	<StrictMode>
+		<ColorThemeContextProvider>
+			<App />
+		</ColorThemeContextProvider>
+	</StrictMode>
 );

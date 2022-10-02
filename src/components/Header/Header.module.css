@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header.light h3 {
+  color: #242424;
+}
+
+.header.dark h3 {
+  color: #fff;
+}
