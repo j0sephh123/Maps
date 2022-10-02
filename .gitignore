@@ -29,3 +29,4 @@ coverage/
 /playwright-report/
 /playwright/.cache/
 /tests-examples
+/e2e/notes.md

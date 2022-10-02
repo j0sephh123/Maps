@@ -20,5 +20,4 @@ Playing around with svg maps.
 - e2e testing -
 
 ## Contribution
-
 - Maps - [simplemaps](https://simplemaps.com/resources/svg-us)

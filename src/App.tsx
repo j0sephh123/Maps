@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer } from "react";
-import { Map, UsaState , Header} from "./components";
+import { Map, UsaState, Header } from "./components";
 import svgPaths from "./data/svgPaths";
 import { stateTitles } from "./data/stateTitles";
 import "./index.css";
@@ -37,18 +37,19 @@ function App() {
 	return (
 		<>
 			<Header>
-				<h2>{`${score}/${stateTitles.length}`}</h2>
+				<h2 id="score">{`${score}/${stateTitles.length}`}</h2>
 				<button onClick={() => dispatch({ type: "DEBUG_ANSWER_ALL" })}>
 					Answer All
 				</button>
 				<button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
-				<h3>{askedState}</h3>
+				<h3 id="askedState">{askedState}</h3>
 				<button onClick={showSuggestion}>Suggest</button>
 			</Header>
 
 			<Map>
 				{stateTitles.map((title, index) => (
 					<UsaState
+						title={title}
 						isSuggested={suggestedStates.includes(title)}
 						key={title}
 						isActive={activeStates.includes(title)}

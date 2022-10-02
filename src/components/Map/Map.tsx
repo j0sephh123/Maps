@@ -15,7 +15,7 @@ const Map = ({ children }: PropsWithChildren) => {
 			xmlnsXlink="http://www.w3.org/1999/xlink"
 			version="1.1"
 		>
-			<g>{children}</g>
+			{children}
 		</svg>
 	);
 };
