@@ -6,13 +6,11 @@ type Props = {
 	d: string;
 	isActive: boolean;
 	isSuggested: boolean;
-	title: string;
 };
 
-const UsaState = ({ title, onClick, d, isActive, isSuggested }: Props) => {
+const UsaState = ({ onClick, d, isActive, isSuggested }: Props) => {
 	return (
 		<path
-			id={title}
 			className={clsx(
 				isActive && classes.isActive,
 				isSuggested && classes.isSuggested
