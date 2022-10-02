@@ -42,13 +42,14 @@ function App() {
 					Answer All
 				</button>
 				<button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
-				<h3>{askedState}</h3>
+				<h3 id="askedState">{askedState}</h3>
 				<button onClick={showSuggestion}>Suggest</button>
 			</Header>
 
 			<Map>
 				{stateTitles.map((title, index) => (
 					<UsaState
+						title={title}
 						isSuggested={suggestedStates.includes(title)}
 						key={title}
 						isActive={activeStates.includes(title)}

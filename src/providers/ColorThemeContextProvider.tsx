@@ -4,6 +4,7 @@ import {
 	useContext,
 	Dispatch,
 	SetStateAction,
+	PropsWithChildren
 } from "react";
 
 type ColorThemes = "light" | "dark";
@@ -19,7 +20,7 @@ const ColorThemeContext = createContext<Context>({
 
 export const useColorTheme = () => useContext(ColorThemeContext);
 
-const ContextProvider = ({ children }: any) => {
+const ContextProvider = ({ children }: PropsWithChildren) => {
 	const [colorTheme, setColorTheme] = useState<ColorThemes>("dark");
 
 	return (

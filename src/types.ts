@@ -25,5 +25,3 @@ export type Action =
 	| { type: "DEBUG_ANSWER_ALL" }
 	| { type: "LOAD_INITIAL_STATES_FROM_LS" }
 	| { type: "SHOW_SUGGESTION" };
-
-export type PropsWithChildren<T> = T & { children: ReactNode };
