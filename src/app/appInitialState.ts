@@ -5,10 +5,8 @@ export const appInitialState: AppInitialState = {
 	activeStates: [],
 	score: 0,
 	askedState: getRandomState(),
-	suggestion: {
-		currentWrongAttempts: 0,
-		suggestedStates: [],
-	},
+	attempts: 0,
+	suggestions: [],
 };
 
 export default appInitialState;

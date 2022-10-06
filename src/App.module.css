@@ -1,0 +1,11 @@
+.Vermont::before {
+	height: 1px;
+	content: "";
+	width: 25px;
+	border-bottom: solid 1px #fff;
+	position: absolute;
+	left: 35px;
+	top: 30px;
+	z-index: 1;
+	transform: rotate(45deg);
+}

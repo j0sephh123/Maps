@@ -1,17 +1,14 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test("States from local storage have active class", async ({ page }) => {
 	await page.addInitScript(() => {
 		localStorage.setItem("activeStates", JSON.stringify(["Alaska", "Texas"]));
 	});
 	await page.goto("http://localhost:5173/");
-	// await page.click("#Alaska", { force: true });
 
-	const el = await page.locator("#askedState").innerText();
-
-	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-	const innerEl = page.locator(`#${el}`);
-	const coords = await innerEl.boundingBox();
+	const askedState = await page.locator("#askedState").innerText();
+	const coords = await page.locator(`#${askedState}`).boundingBox();
+	console.log({ askedState });
 
 	if (coords) {
 		await page.mouse.click(
@@ -20,7 +17,9 @@ test("States from local storage have active class", async ({ page }) => {
 		);
 	}
 
-	await page.pause();
+	expect(await page.locator(`#${askedState}`).getAttribute("class")).toMatch(
+		"isActive"
+	);
 
 	// check if states loaded from local storage are selected
 	// expect(await page.locator("#Alaska").getAttribute("class")).toMatch(

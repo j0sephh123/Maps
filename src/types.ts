@@ -1,22 +1,15 @@
-import { ReactNode } from "react";
-
-export type Suggestion = {
-	currentWrongAttempts: number;
-	suggestedStates: string[];
-};
-
 export type AppInitialState = {
 	askedState: string | null;
 	score: number;
 	activeStates: string[];
-	suggestion: Suggestion;
+	attempts: number;
+	suggestions: string[];
 };
 
 export enum APP_INITIAL_STATE_KEYS {
 	askedState = "askedState",
 	score = "score",
 	activeStates = "activeStates",
-	suggestion = "suggestion",
 }
 
 export type Action =

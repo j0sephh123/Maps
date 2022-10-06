@@ -16,10 +16,7 @@ export default function appReducer(
 		if (!isGuessCorrect) {
 			return {
 				...state,
-				suggestion: {
-					...state.suggestion,
-					currentWrongAttempts: state.suggestion.currentWrongAttempts + 1,
-				},
+				attempts: state.attempts + 1,
 			};
 		}
 
@@ -32,7 +29,8 @@ export default function appReducer(
 			score: state.score + 1,
 			activeStates: newActiveStates,
 			askedState: getRandomState(newActiveStates),
-			suggestion: appInitialState.suggestion,
+			attempts: 0,
+			suggestions: [],
 		};
 	}
 
@@ -41,7 +39,6 @@ export default function appReducer(
 		return {
 			...appInitialState,
 			askedState: getRandomState(),
-			suggestion: appInitialState.suggestion,
 		};
 	}
 
@@ -53,7 +50,8 @@ export default function appReducer(
 			activeStates: stateTitles,
 			askedState: null,
 			score: stateTitles.length,
-			suggestion: appInitialState.suggestion,
+			attempts: 0,
+			suggestions: [],
 		};
 	}
 
@@ -89,15 +87,8 @@ export default function appReducer(
 
 		return {
 			...state,
-			suggestion: {
-				...state.suggestion,
-				currentWrongAttempts: 0,
-				suggestedStates: [
-					state.askedState,
-					firstRandomState,
-					secondRandomState,
-				],
-			},
+			attempts: 0,
+			suggestions: [state.askedState, firstRandomState, secondRandomState],
 		};
 	}
 
