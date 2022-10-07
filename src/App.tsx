@@ -6,15 +6,15 @@ import "./index.css";
 import appInitialState from "./app/appInitialState";
 import appReducer from "./app/appReducer";
 import { MAX_ATTEMPTS } from "./utils/constants";
-import { Coords } from "./components/UsaState/UsaState";
-import { stateCoordinates } from "./data/stateCoordinates";
-import classes from "./App.module.css";
-import clsx from "clsx";
+import type { StateLabelType } from "./types";
+import StateLabel from "./components/StateLabel/StateLabel";
 
 function App() {
-	const [{ activeStates, askedState, score, attempts, suggestions }, dispatch] =
-		useReducer(appReducer, appInitialState);
-	const coordsRef = useRef<Coords[]>([]);
+	const [
+		{ activeStates, askedState, score, attempts, suggestions, showLabelStates },
+		dispatch,
+	] = useReducer(appReducer, appInitialState);
+	const { current: stateLabelTypes } = useRef<StateLabelType[]>([]);
 	const [areCoordsLoaded, setAreCoordsLoaded] = useState(false);
 
 	const showSuggestion = () => dispatch({ type: "SHOW_SUGGESTION" });
@@ -34,18 +34,16 @@ function App() {
 		}
 	}, [attempts]);
 
-	const getCoords = (coords: Coords, index: number) => {
-		if (coordsRef.current.find(({ title }) => title === coords.title)) {
-			return;
-		}
-		coordsRef.current?.push({ ...coords, index });
-	};
+	const getStateLabelsCoords = (coords: StateLabelType, index: number) =>
+		showLabelStates &&
+		!stateLabelTypes.find(({ title }) => title === coords.title) &&
+		stateLabelTypes?.push({ ...coords, index });
 
 	useEffect(() => {
-		if (!areCoordsLoaded && coordsRef.current.length === stateTitles.length) {
+		if (!areCoordsLoaded && stateLabelTypes.length === stateTitles.length) {
 			setAreCoordsLoaded(true);
 		}
-	}, [coordsRef.current.length]);
+	}, [stateLabelTypes.length]);
 
 	return (
 		<>
@@ -59,36 +57,17 @@ function App() {
 				<button onClick={showSuggestion}>Suggest</button>
 			</Header>
 
-			{coordsRef.current.map((el) => {
-				const index = el.index ? el.index : 0;
-				const { left, top } = stateCoordinates[index] || {
-					left: 0,
-					top: 0,
-				};
-
-				console.log(el.title);
-
-				return (
-					<span
-						className={clsx(el.title === "Vermont" && classes.Vermont)}
-						style={{
-							color: "white",
-							position: "absolute",
-							left: el.left + left,
-							top: el.top + top,
-							fontSize: 12,
-						}}
-						key={el.title}
-					>
-						{el.title}
-					</span>
-				);
-			})}
+			{showLabelStates &&
+				stateLabelTypes.map((stateLabel) => (
+					<StateLabel key={stateLabel.title} {...stateLabel} />
+				))}
 
 			<Map>
 				{stateTitles.map((title, index) => (
 					<UsaState
-						getCoords={(coords) => getCoords(coords, index)}
+						getStateLabelsCoords={(coords) =>
+							getStateLabelsCoords(coords, index)
+						}
 						title={title}
 						isSuggested={suggestions.includes(title)}
 						key={title}

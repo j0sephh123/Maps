@@ -1,24 +1,18 @@
 import clsx from "clsx";
+import { StateLabelType, StateTitle } from "../../types";
 import classes from "./UsaState.module.css";
-
-export type Coords = {
-	title: string;
-	left: number;
-	top: number;
-	index?: number;
-};
 
 type Props = {
 	onClick: () => void;
 	d: string;
 	isActive: boolean;
 	isSuggested: boolean;
-	title: string;
-	getCoords: (coords: Coords) => void;
+	title: StateTitle;
+	getStateLabelsCoords: (coords: StateLabelType) => void;
 };
 
 const UsaState = ({
-	getCoords,
+	getStateLabelsCoords,
 	title,
 	onClick,
 	d,
@@ -34,7 +28,7 @@ const UsaState = ({
 
 				const { left, top, right, bottom } = e.getBoundingClientRect();
 
-				getCoords({
+				getStateLabelsCoords({
 					title,
 					left: (left + right) / 2,
 					top: (top + bottom) / 2,

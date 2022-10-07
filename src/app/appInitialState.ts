@@ -7,6 +7,7 @@ export const appInitialState: AppInitialState = {
 	askedState: getRandomState(),
 	attempts: 0,
 	suggestions: [],
+	showLabelStates: false,
 };
 
 export default appInitialState;
